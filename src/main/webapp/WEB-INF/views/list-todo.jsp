@@ -31,7 +31,9 @@
 			 		<td>${todo.id}</td>
 					<td>${todo.desc}</td>
 					<td>${todo.done}</td> 
-					<td><a href = "/deleteTodo?id=${todo.id}"class = "btn btn-danger">Delete</a></td>
+					<td><a href = "/updateTodo?id=${todo.id}" class = "btn btn-primary">Update</a>
+						<a href = "/deleteTodo?id=${todo.id}" class = "btn btn-danger">Delete</a> 	
+					</td>
 				<tr> 
 			</c:forEach>		
 		</tbody>

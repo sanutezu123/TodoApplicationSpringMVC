@@ -11,10 +11,7 @@ public class ToDoService {
 	public static int todoCount = 2;
 	
 	//dummy code for toDoListHardCoded
-	static {
-		todoList.add(new Todo(1,"To learn angular","hrishikesh",new Date(),false));
-		todoList.add(new Todo(2,"To learn springBoot","hrishikesh",new Date(),false));
-	}
+	 
 	
 	public void addTodo(String name,String desc,Date targetDate,boolean isDone) {
 		todoList.add(new Todo(++todoCount,name,desc,targetDate,isDone));
@@ -45,4 +42,29 @@ public class ToDoService {
 		}
 		return filteredTodo;
  	}
+	
+	public Todo retrieveTodoById(int id) {
+		Iterator it = todoList.iterator();
+		while(it.hasNext()) {
+			Todo todo = (Todo)it.next();
+			if(todo.getId() == id) {
+				return todo;
+			}
+		}
+		return null;
+	}
+	public void updateTodo(Todo newTodo,int id) {
+		for(Todo todo:todoList) {
+			if(todo.getId() == id) {
+				newTodo.setId(todo.getId());
+				newTodo.setUser(todo.getUser());
+				todoList.remove(todo);
+				todoList.add(newTodo);
+			}
+		}
+		System.out.println("UPdated Todo");
+		for(Todo todo:todoList) {
+			System.out.println(todo);
+		}
+	}
 }

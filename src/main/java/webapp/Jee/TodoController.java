@@ -1,3 +1,4 @@
+
 package webapp.Jee;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,23 @@ public class TodoController {
 		todoservice.deleteTodo(id);
 		return "redirect:listTodo";
 	}
+	 
+	@RequestMapping(value = "/updateTodo" , method = RequestMethod.GET)
+	public String updateTodoShow(@RequestParam int id, ModelMap map){
+		String updateTodo = "true";
+		Todo todo = todoservice.retrieveTodoById(id);
+		map.addAttribute("updateTodo",updateTodo);
+		map.addAttribute("todo",todo);
+		return "todo";
+	}
+	
+	@RequestMapping(value = "/updateTodo" , method = RequestMethod.POST)
+	public String updateTodo(Todo newTodo,@RequestParam int id, ModelMap map){
+		System.out.println(newTodo.getDesc());
+		System.out.println("is DOne"+newTodo.isDone());
+		todoservice.updateTodo(newTodo,id);
+		return "redirect:listTodo";
+	}
+	 
 	 
 }
